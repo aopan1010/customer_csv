@@ -44,7 +44,7 @@ class UploadController extends Controller
     //CharsetをUTF-8に変換、CSVのヘッダー行を無視
     $config->setToCharset("UTF-8");
     $config->setFromCharset("sjis-win");
-    $config->setIgnoreHeaderLine(false);
+    $config->setIgnoreHeaderLine(true);
 
 
     $dataList = [];
@@ -73,6 +73,6 @@ class UploadController extends Controller
       $count++;
     }
 
-    return redirect()->action('UploadController@index')->with('flash_message', $count . '件の顧客を登録しました！');
+    return redirect()->action('UploadController@index')->with('flash_message', $count . '件の顧客を登録しました');
   }
 }

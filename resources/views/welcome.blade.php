@@ -71,7 +71,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                メディア営業部 訪店リスト
+                訪店リスト
             </div>
 
             <div class="links">

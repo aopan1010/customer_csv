@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
-<form action="import/upload" method="post" enctype="multipart/form-data" id="csvUpload">
+<form action="{{ route('submit_import') }}" method="post" enctype="multipart/form-data" id="csvUpload">
  <h3>インポート先エリア</h3>
   <p>
     <select name="area">

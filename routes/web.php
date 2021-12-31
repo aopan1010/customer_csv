@@ -17,11 +17,12 @@ Auth::routes();
 
 Route::get('/top', 'HomeController@index')->name('top');
 
-Route::get('top/customer', 'customerManagementController@index')->name('customer');
+Route::get('top/customer', 'customerManagementController@index')->name('customer'); // 顧客表示
+Route::post('top/customer/search', 'CustomerManagementController@search')->name('search'); //顧客ソート
 
 //CSV import処理↓
 Route::get('top/import', 'UploadController@index')->name('index_import');
-Route::post('top/import/upload', 'UploadController@upload')->name('submit_import'); //登録
+Route::post('import/upload', 'UploadController@upload')->name('submit_import'); //登録
 
 
 //Route::post('top/inport/upload', 'InportController@upload');
