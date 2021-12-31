@@ -53,5 +53,6 @@
                 </tr>
             </tbody>
         </table>
+        {{ $customers->links() }}
     </main>
 @endsection

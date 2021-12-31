@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CsvCustomer;
 
+
 class CustomerManagementController extends Controller
 {
     public function index()
-
     {
-        $customers = \App\Models\CsvCustomer::select('customer_name', 'customer_code', 'area')->get();    // データ取得できる
+        $customers = \App\Models\CsvCustomer::select('customer_name', 'customer_code', 'area')->paginate(100);    // データ取得
+
 
 
         //取得したデータをviewに渡す
@@ -22,8 +23,6 @@ class CustomerManagementController extends Controller
 
     public function search(Request $request)
     {
+        //実装未定
     }
 }
-
-
-//↑未完成
