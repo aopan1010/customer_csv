@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-use App\Http\Models\CsvCustomer;
+use App\Models\CsvCustomer;
 use Goodby\CSV\Import\Standard\LexerConfig;
 use Goodby\CSV\Import\Standard\Lexer;
 use Goodby\CSV\Import\Standard\Interpreter;
@@ -22,9 +22,12 @@ class UploadController extends Controller
     return view('import');
   }
 
+
   //インポート処理
   public function upload(Request $request)
   {
+    $area = $_POST['area'];
+
     //CSVファイル保存
     $tmpName = mt_rand() . "." . $request->file('csv')->guessExtension();
     $request->file('csv')->move(public_path() . "/csv/tmp", $tmpName);
@@ -53,16 +56,20 @@ class UploadController extends Controller
     });
 
 
+
     // CSVデータをパース
     $lexer->parse($tmpPath, $interpreter);
 
     // TMPファイル削除
     unlink($tmpPath);
 
+
+
+
     // 登録処理
     $count = 0;
     foreach ($dataList as $row) {
-      CsvCustomer::insert(['customer_name' => $row[5], 'cutomer_code' => $row[4]]);
+      CsvCustomer::create(['customer_name' => $row[5], 'customer_code' => $row[4], 'area' => $area]);
       $count++;
     }
 

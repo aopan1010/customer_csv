@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">営業リスト一覧</div>
+        <div class="card-header">Welcome!</div>
 
         <div class="card-body">
           @if (session('status'))
@@ -13,8 +13,14 @@
             {{ session('status') }}
           </div>
           @endif
+          サイトマップ
+          <li class="">
+            <a class="" href="{{ route('index_import') }}">CSVインポート</a>
+        </li>
 
-          トップページです
+        <li class="">
+            <a class="" href="{{ route('customer') }}">顧客管理画面</a>
+        </li>
         </div>
       </div>
     </div>
