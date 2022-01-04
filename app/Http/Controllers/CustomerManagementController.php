@@ -19,7 +19,7 @@ class CustomerManagementController extends Controller
         return view('customer');
     }
 
-    public function search(Request $request)
+    public function check(Request $request)
     {
         //実装未定
     }
