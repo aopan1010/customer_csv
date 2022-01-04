@@ -26,33 +26,38 @@
                 </div>
             </div>
         </form>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>店名</th>
-                    <th>コード</th>
-                    <th>エリア</th>
-                    <th>訪店</th>
-                    <th>削除</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($customers as $key)
+        <form action="route {{ 'check' }}" method="POST">
+            <table class="table table-dark table-striped table-bordered">
+                <thead>
                     <tr>
-                        <td>{{ $key['customer_name'] }}</td>
-                        <td>{{ $key['customer_code'] }}</td>
-                        <td>{{ $key['area'] }}</td>
-                        <td>
-                            <a href="/" class="btn btn-info">訪店</a>
-                        </td>
-                        <td>
-                            <a href="/" class="btn btn-danger">削除</a>
-                        </td>
-                @endforeach
-
-                </tr>
-            </tbody>
-        </table>
+                        <th>店名</th>
+                        <th>コード</th>
+                        <th>エリア</th>
+                        <th>訪店</th>
+                        <th>削除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($customers as $key)
+                        <tr>
+                            <td>{{ $key['customer_name'] }}</td>
+                            <td>{{ $key['customer_code'] }}</td>
+                            <td>{{ $key['area'] }}</td>
+                            <td>
+                                <div class="btn1_wrap">
+                                    <input value="1" id="btn_demo{{ $key['id'] }}" type="checkbox">
+                                    <label for="btn_demo{{ $key['id'] }}"><span>訪店</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="/" class="btn btn-danger">削除</a>
+                            </td>
+                    @endforeach
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" value"保存する" class="button">
+        </form>
         {{ $customers->links() }}
     </main>
 @endsection

@@ -10,9 +10,7 @@ class CustomerManagementController extends Controller
 {
     public function index()
     {
-        $customers = \App\Models\CsvCustomer::select('customer_name', 'customer_code', 'area')->paginate(100);    // データ取得
-
-
+        $customers = \App\Models\CsvCustomer::select('id', 'customer_name', 'customer_code', 'area', 'check', 'created_at')->paginate(100);    // データ取得
 
         //取得したデータをviewに渡す
         return view('customer', [

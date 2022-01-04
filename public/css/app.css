@@ -10136,3 +10136,96 @@ a.text-dark:focus {
         color: red;
     }
 }
+
+.btn1_wrap {
+    height: 50px;
+    position: relative;
+}
+
+.btn1_wrap input {
+    opacity: 0;
+}
+
+.btn1_wrap label {
+    width: 50px;
+    height: 30px;
+    box-sizing: border-box;
+    float: left;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: .3s ease;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+}
+
+.btn1_wrap input:focus+label,
+.btn1_wrap input:focus+label:before {
+    box-shadow: 0 0 4px #34abff;
+}
+
+.btn1_wrap input:checked+label {
+    background: #4BD865;
+}
+
+.btn1_wrap label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background: white;
+    left: 5px;
+    top: 5px;
+    box-sizing: border-box;
+    color: black;
+    border-radius: 100px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+    transition: .3s;
+}
+
+.btn1_wrap input[type=checkbox]:checked+label:before {
+    left: 25px;
+}
+
+.btn1_wrap label span {
+    width: 70%;
+    position: absolute;
+    left: calc(100% + 15px);
+    font-size: 15px;
+    line-height: 35px;
+}
+
+.button {
+    display: inline-block;
+    text-align: right;
+    border-radius: 20%;
+    /* 角丸       */
+    font-size: 16pt;
+    /* 文字サイズ */
+    text-align: center;
+    /* 文字位置   */
+    cursor: pointer;
+    /* カーソル   */
+    padding: 12px 12px;
+    /* 余白       */
+    background: #000000;
+    /* 背景色     */
+    color: #ffffff;
+    /* 文字色     */
+    line-height: 1em;
+    /* 1行の高さ  */
+    transition: .3s;
+    /* なめらか変化 */
+    box-shadow: 10px 10px #666666;
+    /* 影の設定 */
+    border: 2px solid #000000;
+    /* 枠の指定 */
+}
+
+.button:hover {
+    box-shadow: none;
+    /* カーソル時の影消去 */
+    color: #000000;
+    /* 背景色     */
+    background: #ffffff;
+    /* 文字色     */
+}

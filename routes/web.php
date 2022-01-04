@@ -11,6 +11,9 @@
 |
 */
 
+//use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'TopPageController@show');
 
 Auth::routes();
@@ -19,10 +22,10 @@ Route::get('/top', 'HomeController@index')->name('top');
 
 Route::get('top/customer', 'customerManagementController@index')->name('customer'); // 顧客表示
 Route::post('top/customer/search', 'CustomerManagementController@search')->name('search'); //顧客ソート
+Route::post('top/customer/check', 'CustomerManagementController@check')->name('check');
 
 //CSV import処理↓
 Route::get('top/import', 'UploadController@index')->name('index_import');
 Route::post('import/upload', 'UploadController@upload')->name('submit_import'); //登録
 
-
-//Route::post('top/inport/upload', 'InportController@upload');
+Route::get('top/totalling', 'TotalingController@index')->name('index_totaling');//集計ページ表示

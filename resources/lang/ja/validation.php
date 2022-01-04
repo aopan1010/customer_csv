@@ -95,7 +95,7 @@ return [
     'numeric' => ':attributeは数字で入力してください。',
     'present' => ':attributeは存在する必要があります。',
     'regex' => ':attributeの書式が不正です。',
-    'required' => ':attributeを入力してください。',
+    'required' => ':attribute ファイルを選択してください。',
     'required_if' => ':otherが:valueの時、:attributeを入力してください。',
     'required_unless' => ':otherが:valuesでない時、:attributeを入力してください。',
     'required_with' => ':valuesが存在する時、:attributeを入力してください。',

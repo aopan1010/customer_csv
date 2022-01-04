@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -23,9 +24,20 @@ class UploadController extends Controller
   }
 
 
-  //インポート処理
+
+
   public function upload(Request $request)
   {
+    //バリデーション
+    $validate = Validator::make($request->all(), [
+      'csv' => 'required',
+      'area' => 'required',
+    ]);
+
+    if ($validate->fails()) {
+      return redirect()->route("index_import")->withErrors($validate->messages());
+    }
+    //インポート処理
     $area = $_POST['area'];
 
     //CSVファイル保存
