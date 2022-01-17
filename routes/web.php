@@ -21,8 +21,8 @@ Auth::routes();
 Route::get('/top', 'HomeController@index')->name('top');
 
 Route::get('top/customer', 'customerManagementController@index')->name('customer'); // 顧客表示
-Route::post('top/customer/search', 'CustomerManagementController@search')->name('search'); //顧客ソート
-Route::post('top/customer/check', 'CustomerManagementController@check')->name('check');
+Route::post('top/customer/check', 'CustomerManagementController@check')->name('check'); //チェックボックス・備考メモ保存
+
 
 //CSV import処理↓
 Route::get('top/import', 'UploadController@index')->name('index_import');

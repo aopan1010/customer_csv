@@ -2,7 +2,13 @@
 
 @section('content')
     <main class="common_main">
-        <form action="route {{ 'serach' }}" method="POST">
+        @if (session('flash_message'))
+            <div class="flash_message">
+                {{ session('flash_message') }}
+            </div>
+        @endif
+
+        <form action="{{ route('customer') }}" method="GET">
             <div>
                 <div>
 
@@ -21,12 +27,15 @@
             <div>
                 <div>
                     <h2>いつのデータを表示しますか？</h2>
-                    <input type="month" name="from" placeholder="from_date">
+                    <input type="date" name="from" placeholder="from_date">
+                    <span class="mx-3 text-grey">~</span>
+                    <input type="date" name="until" placeholder="until_date">
+                    {{ csrf_field() }}
                     <button type="submit">検索</button>
                 </div>
             </div>
         </form>
-        <form action="route {{ 'check' }}" method="POST">
+        <form action="{{ route('check') }}" method="POST">
             <table class="table table-dark table-striped table-bordered">
                 <thead>
                     <tr>
@@ -34,9 +43,12 @@
                         <th>コード</th>
                         <th>エリア</th>
                         <th>訪店</th>
-                        <th>削除</th>
+                        <th>メモ/備考</th>
+                        <th>登録日</th>
+
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach ($customers as $key)
                         <tr>
@@ -45,19 +57,29 @@
                             <td>{{ $key['area'] }}</td>
                             <td>
                                 <div class="btn1_wrap">
-                                    <input value="1" id="btn_demo{{ $key['id'] }}" type="checkbox">
-                                    <label for="btn_demo{{ $key['id'] }}"><span>訪店</span></label>
+
+                                    <input name="check[{{ $key['id'] }}]" type="hidden" value="0">
+                                    <input name="check[{{ $key['id'] }}]" value="1" id="btn_demo{{ $key['id'] }}"
+                                        type="checkbox" @if ($key['check'] === 1)checked @elseif($key['check'] === 0)null @endif>
+                                    <label for="btn_demo{{ $key['id'] }}">
+                                        <span>訪店</span>
+                                    </label>
+
                                 </div>
                             </td>
                             <td>
-                                <a href="/" class="btn btn-danger">削除</a>
+                                <textarea name="context[]" id="" cols="50" rows="3"></textarea>
+                            </td>
+                            <td>
+                                {{ $key['updated_at'] }}
                             </td>
                     @endforeach
                     </tr>
                 </tbody>
             </table>
-            <input type="submit" value"保存する" class="button">
+            {{ csrf_field() }}
+            <input type="submit" value="保存する" class="btn btn--yellow btn--cubic">
         </form>
-        {{ $customers->links() }}
+
     </main>
 @endsection
