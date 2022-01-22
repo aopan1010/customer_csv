@@ -50,6 +50,7 @@
                 </thead>
 
                 <tbody>
+
                     @foreach ($customers as $key)
                         <tr>
                             <td>{{ $key['customer_name'] }}</td>
@@ -57,10 +58,9 @@
                             <td>{{ $key['area'] }}</td>
                             <td>
                                 <div class="btn1_wrap">
-
                                     <input name="check[{{ $key['id'] }}]" type="hidden" value="0">
                                     <input name="check[{{ $key['id'] }}]" value="1" id="btn_demo{{ $key['id'] }}"
-                                        type="checkbox" @if ($key['check'] === 1)checked @elseif($key['check'] === 0)null @endif>
+                                        type="checkbox" @if ($key['check'] === 1)checked @elseif($key['check'] === 0)0 @endif>
                                     <label for="btn_demo{{ $key['id'] }}">
                                         <span>訪店</span>
                                     </label>
@@ -68,7 +68,8 @@
                                 </div>
                             </td>
                             <td>
-                                <textarea name="context[]" id="" cols="50" rows="3"></textarea>
+                                <textarea name="context[]" id="" cols="50" rows="3">{{ $key['memo'] }}</textarea>
+                                <input type="submit" value="保存する" class="btn btn--yellow btn--cubic">
                             </td>
                             <td>
                                 {{ $key['updated_at'] }}
