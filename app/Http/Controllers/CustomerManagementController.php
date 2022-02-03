@@ -38,12 +38,11 @@ class CustomerManagementController extends Controller
 
         $checks =  $request->input('check');
 
-        var_dump($checks);
         foreach ($checks as $key => $check) {
             $store = CsvCustomer::where('id', "=", "$key")->first();
 
             $store->check = $check;
-            $store->timestamps = false;
+            $store->timestamps = true;
             $store->save();
         }
 

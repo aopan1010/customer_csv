@@ -43,8 +43,8 @@
                         <th>コード</th>
                         <th>エリア</th>
                         <th>訪店</th>
-                        <th>メモ/備考</th>
-                        <th>登録日</th>
+                        <th>訪店日</th>
+
 
                     </tr>
                 </thead>
@@ -66,10 +66,6 @@
                                     </label>
 
                                 </div>
-                            </td>
-                            <td>
-                                <textarea name="context[]" id="" cols="50" rows="3">{{ $key['memo'] }}</textarea>
-                                <input type="submit" value="保存する" class="btn btn--yellow btn--cubic">
                             </td>
                             <td>
                                 {{ $key['updated_at'] }}
