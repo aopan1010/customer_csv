@@ -19,7 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('customer_code', 24);
             $table->string('area', 20);
             $table->tinyInteger('check');
-            $table->string('memo', 300);
+            $table->date('scheduled_visit_date');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
             $table->softDeletes('deleted_at');

@@ -27,9 +27,7 @@
             <div>
                 <div>
                     <h2>いつのデータを表示しますか？</h2>
-                    <input type="date" name="from" placeholder="from_date">
-                    <span class="mx-3 text-grey">~</span>
-                    <input type="date" name="until" placeholder="until_date">
+                    <input type="month" name="search_date" placeholder="date">
                     {{ csrf_field() }}
                     <button type="submit">検索</button>
                 </div>
@@ -43,14 +41,14 @@
                         <th>コード</th>
                         <th>エリア</th>
                         <th>訪店</th>
-                        <th>訪店日</th>
+                        <th>訪問予定日</th>
+                        <th>訪問日</th>
 
 
                     </tr>
                 </thead>
 
                 <tbody>
-
                     @foreach ($customers as $key)
                         <tr>
                             <td>{{ $key['customer_name'] }}</td>
@@ -68,7 +66,18 @@
                                 </div>
                             </td>
                             <td>
-                                {{ $key['updated_at'] }}
+                                @if ($key['scheduled_visit_date'] === null)
+                                    <input type="date" name="scheduled_to_visit[{{ $key['id'] }}]">
+                                @else
+                                    <div>{{ $key['scheduled_visit_date'] }}</div>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($key['check'] === 1)
+                                    <div>{{ $key['updated_at'] }}</div>
+                                @else
+                                    <div>訪店してません</div>
+                                @endif
                             </td>
                     @endforeach
                     </tr>

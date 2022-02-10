@@ -32,6 +32,7 @@ class UploadController extends Controller
     $validate = Validator::make($request->all(), [
       'csv' => 'required',
       'area' => 'required',
+      'yearmonth' => 'required',
     ]);
 
     if ($validate->fails()) {
@@ -39,6 +40,8 @@ class UploadController extends Controller
     }
     //インポート処理
     $area = $_POST['area'];
+    $date = $_POST['yearmonth'];
+
 
     //CSVファイル保存
     $tmpName = mt_rand() . "." . $request->file('csv')->guessExtension();
@@ -81,7 +84,7 @@ class UploadController extends Controller
     // 登録処理
     $count = 0;
     foreach ($dataList as $row) {
-      CsvCustomer::create(['customer_name' => $row[5], 'customer_code' => $row[4], 'area' => $area]);
+      CsvCustomer::create(['customer_name' => $row[5], 'customer_code' => $row[4], 'area' => $area, 'submit' => $date]);
       $count++;
     }
 
