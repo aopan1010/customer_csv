@@ -1,6 +1,5 @@
 @extends('layouts.sidebar')
 @section('content')
-
     @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
     @endforeach
@@ -16,8 +15,7 @@
                 <option value="岐阜三重尾張">岐阜三重尾張</option>
             </select>
         </p>
-        <h3>登録年月</h3>
-        <input type="month" name="yearmonth">
+
 
         <h3>データ選択</h3>
         <input type="file" value="ファイルを選択" name="csv">
@@ -30,5 +28,4 @@
             {{ session('flash_message') }}
         </div>
     @endif
-
 @endsection

@@ -4,34 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CsvCustomer;
-use App\Models\Date;
-use PhpParser\Node\Expr\Isset_;
-use Carbon\Carbon;
 
 class CustomerManagementController extends Controller
 {
     public function index(Request $request)
     {
-
-
         $area = $request->input('area');
-        $date = $request->input('search_date');
-
         $query = CsvCustomer::query();
 
 
         //エリアかつ日付が入っていれば両方でソート
-        if (isset($area) && isset($date)) {
-            $query = Csvcustomer::whereDate('created_at', $date)->get(); //エラー発生中
-            $customers = $query->where('area', $area)->get();
-        } elseif (isset($area)) {
-            $customers = $query->where('area', $area)->get();
+        if (!empty($request['from']) && !empty($request['until'])) {
+            $date = CsvCustomer::getDate($request['from'], $request['until']);
+            $customers = $date->where('area', $area);
         } else {
-            $customers = $query->get();
+            $customers = CsvCustomer::get();
         }
         //取得したデータをviewに渡す
         return view('customer', [
             "customers" => $customers,
+            "from" => $request['from'],
+            "until" => $request['until'],
+            "area" => $area,
         ]);
     }
 

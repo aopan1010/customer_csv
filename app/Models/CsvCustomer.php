@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
+use Carbon\Carbon;
 
 class CsvCustomer extends Model
 {
@@ -28,13 +29,12 @@ class CsvCustomer extends Model
         'updated_at',
     ];
 
+
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public static function getDate($from, $until)
     {
-        //created_atが20xx/xx/xx ~ 20xx/xx/xxのデータを取得
-        $date = CsvCustomer::whereBetween("updated_at", [$from, $until])->paginate(15);
-
+        $date = CsvCustomer::whereBetween('created_at', [$from, $until])->get();
         return $date;
     }
 }
