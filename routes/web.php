@@ -19,7 +19,7 @@ Route::get('/', 'TopPageController@show');
 Auth::routes();
 
 Route::get('/top', 'HomeController@index')->name('top');
-
+//顧客一覧
 Route::get('top/customer', 'customerManagementController@index')->name('customer'); // 顧客表示
 Route::post('top/customer/check', 'CustomerManagementController@check')->name('check'); //チェックボックス・備考メモ保存
 
@@ -28,4 +28,5 @@ Route::post('top/customer/check', 'CustomerManagementController@check')->name('c
 Route::get('top/import', 'UploadController@index')->name('index_import');
 Route::post('import/upload', 'UploadController@upload')->name('submit_import'); //登録
 
+//集計ページ
 Route::get('top/totalling', 'TotalingController@index')->name('index_totaling');//集計ページ表示

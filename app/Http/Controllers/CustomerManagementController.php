@@ -10,22 +10,28 @@ class CustomerManagementController extends Controller
     public function index(Request $request)
     {
         $area = $request->input('area');
-        $query = CsvCustomer::query();
+        $search = $request->input('search');
+
 
 
         //エリアかつ日付が入っていれば両方でソート
-        if (!empty($request['from']) && !empty($request['until'])) {
+        if (!empty($search) && !empty($request['from']) && !empty($request['until'])) {
             $date = CsvCustomer::getDate($request['from'], $request['until']);
-            $customers = $date->where('area', $area);
-        } else {
-            $customers = CsvCustomer::get();
+            $customers = $date->where('area', $area)->where('customer_name',  'like', $search);
+        } elseif ($area === NULL) {
+            $customers = CsvCustomer::getDate($request['from'], $request['until']);
+        } elseif (empty($search)) {
+            $customers = CsvCustomer::getDate($request['from'], $request['until'])->where('area', $area);
         }
+
         //取得したデータをviewに渡す
+
         return view('customer', [
             "customers" => $customers,
             "from" => $request['from'],
             "until" => $request['until'],
             "area" => $area,
+            "search" => $search,
         ]);
     }
 

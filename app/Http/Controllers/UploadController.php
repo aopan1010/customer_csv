@@ -82,6 +82,8 @@ class UploadController extends Controller
 
 
     // 登録処理
+    //customer_name or customer_codeが見つからない、もしくは拡張子がCSV出ない場合はCSVファイルの場合リダイレクトでエラーメッセを飛ばす
+
     $count = 0;
     foreach ($dataList as $row) {
       CsvCustomer::create(['customer_name' => $row[5], 'customer_code' => $row[4], 'area' => $area,]);

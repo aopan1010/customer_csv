@@ -15,7 +15,7 @@
                     <h2>表示するエリア</h2>
                     <p>
                         <select name="area">
-                            <option value="">エリア選択</option>
+                            <option value=>全エリア</option>
                             <option value="名古屋中心部">名古屋中心部</option>
                             <option value="名古屋北部">名古屋北部</option>
                             <option value="名古屋南部">名古屋南部</option>
@@ -32,17 +32,27 @@
                     <span class="mx-3 text-grey">~</span>
                     <input type="date" name="until" placeholder="until_date" required>
 
-                    {{ csrf_field() }}
-                    <button type="submit">検索</button>
+
                 </div>
             </div>
+
+            <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
+                <div class="form-group">
+                    <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="店名を入力">
+                </div>
+            </div>
+            {{ csrf_field() }}
+            <input type="submit" value="検索" class="btn btn-info">
         </form>
+
         @if ($from && $until)
             <p>今表示しているのは<span class="badge badge-secondary">{{ $area }}</span>の<span
                     class="badge badge-secondary">{{ $from }}</span>から<span
                     class="badge badge-secondary">{{ $until }}</span>のデータです
             </p>
         @endif
+
+
         <form action="{{ route('check') }}" method="POST">
             <div class="table-responsive-sm">
                 <table class="table table-dark table-hover">

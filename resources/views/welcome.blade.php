@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>訪店リスト</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -47,7 +48,7 @@
         }
 
         .title {
-            font-size: 65px;
+            font-size: 50px;
         }
 
         .links>a {
@@ -63,6 +64,7 @@
         .m-b-md {
             margin-bottom: 30px;
         }
+
     </style>
 </head>
 
@@ -71,7 +73,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                訪店リスト
+                訪店リスト ver:1.0.0
             </div>
 
             <div class="links">
