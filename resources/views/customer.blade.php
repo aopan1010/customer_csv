@@ -21,6 +21,7 @@
                             <option value="名古屋南部">名古屋南部</option>
                             <option value="三河">三河</option>
                             <option value="岐阜三重尾張">岐阜三重尾張</option>
+                            <option value="土肥さん">土肥さん</option>
                         </select>
                     </p>
                 </div>

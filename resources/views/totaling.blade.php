@@ -23,6 +23,11 @@
         </form>
 
 
+        @if (isset($from) && isset($until))
+            <p><span class="badge badge-secondary">{{ $from }}</span>から<span
+                    class="badge badge-secondary">{{ $until }}</span>のデータです
+            </p>
+        @endif
         <table class="table table-dark table-striped table-bordered">
 
             <thead class="thead-light">
@@ -31,104 +36,26 @@
                     <th>訪店率</th>
                 </tr>
             </thead>
-            @if (isset($area_counts) || isset($check_counts))
-                @foreach ($check_counts as $check_count)
-                    @foreach ($area_counts as $area_count)
-                        <tr>
-                            <td>
-                                名古屋中心部
-                            </td>
-                            <td>
-                                @if ($check_count === 0 || $area_count === 0)
-                                    <p>データなし</p>
-                                @else
-                                    @php
-                                        echo round(($check_count / $area_count) * 100);
-                                    @endphp
-                                    %
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                名古屋北部
-                            </td>
-                            <td>
-                                @if ($check_count === 0 || $area_count === 0)
-                                    <p>データなし</p>
-                                @else
-                                    @php
-                                        echo round(($check_count / $area_count) * 100);
-                                    @endphp
-                                    %
-                                @endif
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                名古屋南部
-                            </td>
-                            <td>
-                                @if ($check_count === 0 || $area_count === 0)
-                                    <p>データなし</p>
-                                @else
-                                    @php
-                                        echo round(($check_count / $area_count) * 100);
-                                    @endphp
-                                    %
-                                @endif
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                三河
-                            </td>
-                            <td>
-                                @if ($check_count === 0 || $area_count === 0)
-                                    <p>データなし</p>
-                                @else
-                                    @php
-                                        echo round(($check_count / $area_count) * 100);
-                                    @endphp
-                                    %
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                岐阜三重尾張
-                            </td>
-                            <td>
-                                @if ($check_count === 0 || $area_count === 0)
-                                    <p>データなし</p>
-                                @else
-                                    @php
-                                        echo round(($check_count / $area_count) * 100);
-                                    @endphp
-                                    %
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                土肥さん
-                            </td>
-                            <td>
-                                @if ($check_count === 0 || $area_count === 0)
-                                    <p>データなし</p>
-                                @else
-                                    @php
-                                        echo round(($check_count / $area_count) * 100);
-                                    @endphp
-                                    %
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
+            @if (isset($array))
+                @foreach ($array as $area => $value1)
+                    <tr>
+                        <td>
+                            <p>{{ $area }}</p>
+                        </td>
+                        <td>
+                            @if ($value1[0] === 0 || $value1[1] === 0)
+                                <p>データなし</p>
+                            @else
+                                @php
+                                    echo round(($value1[1] / $value1[0]) * 100);
+                                @endphp
+                                %
+                            @endif
+                        </td>
+                    </tr>
                 @endforeach
             @endif
-        </table>
 
+
+        </table>
     @endsection

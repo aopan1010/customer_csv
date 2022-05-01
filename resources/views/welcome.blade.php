@@ -48,12 +48,15 @@
         }
 
         .title {
-            font-size: 50px;
+            font-size: 60px;
+
+
         }
 
         .links>a {
             color: white;
-            padding: 0 25px;
+
+            padding: 100px 30px;
             font-size: 18px;
             font-weight: 600;
             letter-spacing: .1rem;
@@ -63,6 +66,7 @@
 
         .m-b-md {
             margin-bottom: 30px;
+
         }
 
     </style>
@@ -73,7 +77,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                訪店リスト ver:1.0.0
+                訪店リスト test
             </div>
 
             <div class="links">
